@@ -188,7 +188,7 @@ type
     procedure GetTZDataSettings;
   protected
     FFBLibrary: TFBLibrary;
-    function GetProcAddr(ProcName: PAnsiChar): Pointer;
+    function GetProcAddr(ProcName: PAnsiChar; IgnoreError:boolean=false): Pointer;
 
   protected type
     Tfb_shutdown = function (timeout: uint;
@@ -561,12 +561,12 @@ begin
 end;
 {$ENDIF}
 
-function TFBClientAPI.GetProcAddr(ProcName: PAnsiChar): Pointer;
+function TFBClientAPI.GetProcAddr(ProcName: PAnsiChar; IgnoreError:boolean=false): Pointer;
 begin
   Result := nil;
   if assigned(FFBLibrary) and (FFBLibrary.IBLibrary <> NilHandle) then
     Result := GetProcAddress(FFBLibrary.IBLibrary, ProcName);
-  if not Assigned(Result) then
+  if not Assigned(Result) and not IgnoreError then
     raise Exception.CreateFmt(SFirebirdAPIFuncNotFound,[ProcName]);
 end;
 
@@ -602,10 +602,10 @@ end;
 
 function TFBClientAPI.LoadInterface: boolean;
 begin
-  isc_sqlcode := GetProcAddr('isc_sqlcode'); {do not localize}
-  isc_sql_interprete := GetProcAddr('isc_sql_interprete'); {do not localize}
-  fb_shutdown := GetProcAddr('fb_shutdown'); {do not localize}
-  fb_sqlstate := GetProcAddr('fb_sqlstate'); {do not localize}
+  isc_sqlcode := GetProcAddr('isc_sqlcode',true); {do not localize}
+  isc_sql_interprete := GetProcAddr('isc_sql_interprete',true); {do not localize}
+  fb_shutdown := GetProcAddr('fb_shutdown',true); {do not localize}
+  fb_sqlstate := GetProcAddr('fb_sqlstate',true); {do not localize}
   Result := true; {don't case if these fail to load}
 end;
 

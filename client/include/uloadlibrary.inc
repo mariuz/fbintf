@@ -62,6 +62,11 @@ begin
       LibName := '/Library/Frameworks/Firebird.framework/Libraries/libfbclient.dylib';
       FIBLibrary := LoadLibrary(LibName);
     end;
+    if FIBLibrary = NilHandle then
+    begin
+      LibName := '/Library/Frameworks/Firebird.framework/Versions/A/Resources/lib/libfbclient.dylib';
+      FIBLibrary := LoadLibrary(LibName);
+    end;
     if FIBLibrary <> NilHandle then
        FFBLibraryName := ExtractFileName(LibName);
   end;
