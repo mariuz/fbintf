@@ -427,7 +427,7 @@ begin
   isc_prepare_transaction  := GetProcAddr('isc_prepare_transaction'); {do not localize}
   isc_version  := GetProcAddr('isc_version'); {do not localize}
   isc_interprete := GetProcAddr('isc_interprete'); {do not localize}
-  fb_interpret := GetProcAddr('fb_interpret'); {do not localize}
+  fb_interpret := GetProcAddr('fb_interpret',true); {do not localize}
 
   FIBServiceAPIPresent := true;
   isc_rollback_retaining := GetProcAddress(FFBLibrary.IBLibrary, 'isc_rollback_retaining'); {do not localize}

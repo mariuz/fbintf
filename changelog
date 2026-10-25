@@ -1,3 +1,7 @@
+FBINTF Change Log  version          (1.4-11 Build 1267) Tue, 15 Sep 2026 16:16:22 +0100
+
+1. Ignore missing API calls when opening a legacy Firebird 1.5 client library
+
 FBINTF Change Log  version          (1.4-10 Build 1267) Tue, 15 Sep 2026 16:16:22 +0100
 
 1. Fix use-after-free when ending a transaction with registered users.
