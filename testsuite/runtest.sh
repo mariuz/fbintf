@@ -17,7 +17,11 @@ fi
 cd `dirname $0`
 mkdir -p $TESTOUTDIR
 chmod 777 $TESTOUTDIR
-export FPCDIR=/usr/lib/fpc/`$FPC -iV`
+FPCDIR=/usr/share/fpcsrc/`$FPC -iV`
+if [ ! -d "$FPCDIR/rtl" ]; then
+  FPCDIR=/usr/lib/fpc/`$FPC -iV`
+fi
+export FPCDIR
 fpcmake
 make clean
 make
@@ -81,4 +85,3 @@ fi
 rm -r testunits
 rm testsuite
 exit 0
-

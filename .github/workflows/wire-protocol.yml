@@ -280,7 +280,7 @@ jobs:
       - name: Install Free Pascal
         run: |
           sudo apt-get update
-          sudo apt-get install -y fpc
+          sudo apt-get install -y fpc fpc-source
           echo "compiler: $(fpc -iV), target: $(fpc -iTO)-$(fpc -iTP)"
 
       - name: Run the test suite over the wire provider
