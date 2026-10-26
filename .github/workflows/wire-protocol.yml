@@ -19,6 +19,9 @@ on:
       - '.github/workflows/wire-protocol.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   FB_USER: SYSDBA
   FB_PASSWORD: masterkey
